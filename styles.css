@@ -527,3 +527,31 @@ img { display: block; max-width: 100%; }
   .hero-cta-group { flex-direction: column; }
   .btn { width: 100%; justify-content: center; }
 }
+
+/* ===== BOTÓN WHATSAPP FLOTANTE ===== */
+.whatsapp-float {
+  position: fixed;
+  bottom: 1.8rem;
+  right: 1.8rem;
+  z-index: 999;
+  width: 58px;
+  height: 58px;
+  background: #25d366;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 20px rgba(37, 211, 102, 0.45);
+  transition: transform 0.22s ease, box-shadow 0.22s ease;
+}
+
+.whatsapp-float svg {
+  width: 30px;
+  height: 30px;
+  color: #fff;
+}
+
+.whatsapp-float:hover {
+  transform: scale(1.1);
+  box-shadow: 0 6px 28px rgba(37, 211, 102, 0.65);
+}
