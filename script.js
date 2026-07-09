@@ -135,6 +135,106 @@ Quedo a la espera de su respuesta. ¡Muchas gracias!`;
   }, 900);
 });
 
+/* ---------- FORMULARIO DE EMAIL (EmailJS) ---------- */
+
+// ⚠️ Estas claves salen de tu cuenta en emailjs.com (Dashboard → Email Services / Email Templates / Account → API Keys)
+const EMAILJS_PUBLIC_KEY  = 'OVGJiOyGj5izsHrtW';
+const EMAILJS_SERVICE_ID  = 'service_wrzl89n';
+const EMAILJS_TEMPLATE_ID = 'template_jan2agb';
+
+if (window.emailjs) {
+  emailjs.init(EMAILJS_PUBLIC_KEY);
+}
+
+const emailForm        = document.getElementById('emailContactForm');
+const emailFormSuccess = document.getElementById('emailFormSuccess');
+const emailFormError   = document.getElementById('emailFormError');
+
+const emailFields = {
+  email_name:    { el: document.getElementById('email_name'),    err: document.getElementById('error-email_name') },
+  email_reply:   { el: document.getElementById('email_reply'),   err: document.getElementById('error-email_reply') },
+  email_message: { el: document.getElementById('email_message'), err: document.getElementById('error-email_message') },
+};
+
+function validateEmailForm() {
+  let valid = true;
+
+  const nombre = emailFields.email_name.el.value.trim();
+  if (!nombre) {
+    showError(emailFields.email_name, 'Por favor ingresá tu nombre completo.');
+    valid = false;
+  } else if (nombre.length < 3) {
+    showError(emailFields.email_name, 'El nombre debe tener al menos 3 caracteres.');
+    valid = false;
+  } else {
+    clearError(emailFields.email_name);
+  }
+
+  const email = emailFields.email_reply.el.value.trim();
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if (!email) {
+    showError(emailFields.email_reply, 'Por favor ingresá tu email.');
+    valid = false;
+  } else if (!emailRegex.test(email)) {
+    showError(emailFields.email_reply, 'Ingresá un email válido.');
+    valid = false;
+  } else {
+    clearError(emailFields.email_reply);
+  }
+
+  const mensaje = emailFields.email_message.el.value.trim();
+  if (!mensaje) {
+    showError(emailFields.email_message, 'Por favor describí el problema de tu equipo.');
+    valid = false;
+  } else if (mensaje.length < 15) {
+    showError(emailFields.email_message, 'Agregá un poco más de detalle (mínimo 15 caracteres).');
+    valid = false;
+  } else {
+    clearError(emailFields.email_message);
+  }
+
+  return valid;
+}
+
+Object.values(emailFields).forEach(field => {
+  field.el.addEventListener('input', () => {
+    if (field.el.classList.contains('invalid')) {
+      if (field.el.value.trim().length > 0) clearError(field);
+    }
+  });
+});
+
+if (emailForm) {
+  emailForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+
+    if (!validateEmailForm()) return;
+
+    const submitBtn = document.getElementById('emailSubmitBtn');
+    const originalBtnHTML = submitBtn.innerHTML;
+
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Enviando…';
+    emailFormSuccess.style.display = 'none';
+    emailFormError.style.display = 'none';
+
+    emailjs.sendForm(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, emailForm)
+      .then(() => {
+        emailFormSuccess.style.display = 'block';
+        emailForm.reset();
+        setTimeout(() => { emailFormSuccess.style.display = 'none'; }, 5000);
+      })
+      .catch((error) => {
+        emailFormError.style.display = 'block';
+        console.error('EmailJS error:', error);
+      })
+      .finally(() => {
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = originalBtnHTML;
+      });
+  });
+}
+
 /* ---------- SCROLL ACTIVO EN NAVBAR ---------- */
 const sections = document.querySelectorAll('section[id]');
 const navItems  = document.querySelectorAll('.nav-links a');
@@ -159,7 +259,7 @@ sections.forEach(section => observer.observe(section));
 /* ---------- ANIMACIÓN DE ENTRADA (scroll reveal) ---------- */
 const revealElements = document.querySelectorAll(
   '.service-card, .about-card, .form-wrapper, .upgrade-inner, .about-description'
-);
+); // .form-wrapper cubre ambos formularios (WhatsApp y Email), ya que comparten la clase
 
 const styleReveal = document.createElement('style');
 styleReveal.textContent = `.revealed { opacity: 1 !important; transform: translateY(0) !important; }`;
