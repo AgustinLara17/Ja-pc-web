@@ -329,6 +329,20 @@ img { display: block; max-width: 100%; }
 }
 
 /* ---------- CONTACT FORM ---------- */
+.forms-wrapper {
+  display: flex;
+  gap: 2rem;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.forms-wrapper .form-wrapper {
+  flex: 1 1 380px;
+  max-width: 480px;
+  margin: 0;
+}
+
 .form-wrapper {
   max-width: 620px;
   margin: 0 auto;
@@ -337,6 +351,27 @@ img { display: block; max-width: 100%; }
   border-radius: var(--radius);
   padding: 2.5rem 2rem;
   box-shadow: var(--shadow);
+}
+
+.email-form-title {
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 1.4rem;
+  text-align: center;
+}
+
+.form-error-msg {
+  display: none;
+  margin-top: 1.2rem;
+  padding: 1rem;
+  background: rgba(248,113,113,0.1);
+  border: 1px solid rgba(248,113,113,0.3);
+  border-radius: var(--radius-sm);
+  color: var(--error);
+  font-size: 0.9rem;
+  text-align: center;
 }
 
 .form-group {
@@ -521,6 +556,9 @@ img { display: block; max-width: 100%; }
   .hero-title { font-size: clamp(2.2rem, 8vw, 3.5rem); }
 
   .form-wrapper { padding: 1.8rem 1.2rem; }
+
+  .forms-wrapper { flex-direction: column; align-items: stretch; }
+  .forms-wrapper .form-wrapper { max-width: 100%; }
 }
 
 @media (max-width: 480px) {
