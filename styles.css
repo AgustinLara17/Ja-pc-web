@@ -27,7 +27,7 @@
 html { scroll-behavior: smooth; }
 
 body {
-  background: var(--bg);
+  background: radial-gradient(ellipse 120% 80% at 50% -10%, #1c1e24 0%, var(--bg) 55%);
   color: var(--text);
   font-family: var(--font-body);
   font-size: 16px;
@@ -113,7 +113,7 @@ img { display: block; max-width: 100%; }
   position: sticky;
   top: 0;
   z-index: 100;
-  background: rgba(12, 15, 22, 0.92);
+  background: rgba(13, 14, 18, 0.92);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   border-bottom: 1px solid var(--border);
@@ -181,8 +181,8 @@ img { display: block; max-width: 100%; }
   position: absolute;
   inset: 0;
   background-image:
-    linear-gradient(rgba(59,130,246,0.06) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(59,130,246,0.06) 1px, transparent 1px);
+    linear-gradient(rgba(124,135,151,0.07) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(124,135,151,0.07) 1px, transparent 1px);
   background-size: 48px 48px;
   mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 30%, transparent 100%);
 }
@@ -258,7 +258,7 @@ img { display: block; max-width: 100%; }
 .service-card:hover {
   transform: translateY(-4px);
   border-color: var(--accent);
-  box-shadow: 0 8px 32px rgba(59,130,246,0.15);
+  box-shadow: 0 8px 32px rgba(124,135,151,0.18);
 }
 .service-card:hover::after {
   transform: scaleX(1);
@@ -457,7 +457,7 @@ img { display: block; max-width: 100%; }
 }
 .about-card:hover {
   border-color: var(--accent);
-  box-shadow: 0 4px 24px rgba(59,130,246,0.12);
+  box-shadow: 0 4px 24px rgba(124,135,151,0.15);
 }
 
 .about-avatar {
@@ -530,7 +530,7 @@ img { display: block; max-width: 100%; }
 
 .footer-copy {
   font-size: 0.78rem;
-  color: #4a5568;
+  color: #565b64;
 }
 
 /* ---------- MOBILE NAV ---------- */
@@ -539,7 +539,7 @@ img { display: block; max-width: 100%; }
     display: none;
     position: absolute;
     top: 64px; left: 0; right: 0;
-    background: rgba(12, 15, 22, 0.98);
+    background: rgba(13, 14, 18, 0.98);
     flex-direction: column;
     padding: 1.5rem;
     gap: 1.2rem;
