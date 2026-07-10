@@ -6,15 +6,15 @@
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 :root {
-  --bg:          #0c0f16;
-  --bg-card:     #131722;
-  --bg-card-2:   #1a1f2e;
-  --accent:      #3b82f6;
-  --accent-glow: #3b82f655;
-  --accent-2:    #60a5fa;
-  --text:        #e2e8f0;
-  --text-muted:  #8899aa;
-  --border:      #1e2a3a;
+  --bg:          #0d0e12;
+  --bg-card:     #16181d;
+  --bg-card-2:   #1f222a;
+  --accent:      #7c8797;
+  --accent-glow: #7c879755;
+  --accent-2:    #a8b1bd;
+  --text:        #eef0f2;
+  --text-muted:  #8b93a0;
+  --border:      #272a32;
   --success:     #22c55e;
   --error:       #f87171;
   --font-display: 'Rajdhani', sans-serif;
